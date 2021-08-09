@@ -6,16 +6,16 @@ GO
 
 CREATE TABLE Palestrante(
 Codigo_Palestrante	INT					IDENTITY	PRIMARY KEY,
-Nome				VARCHAR(250)		NOT NULL,
-Empresa				VARCHAR(100)		NOT NULL
+Nome				        VARCHAR(250)		NOT NULL,
+Empresa				      VARCHAR(100)		NOT NULL
 )
 
 CREATE TABLE Palestra(
-Codigo_Palestra		INT					PRIMARY KEY,
-Titulo				VARCHAR(MAX)		NOT NULL,
-Carga_Horaria		INT					NULL,
-Data1				DATETIME			NOT NULL,
-Codigo_Palestrante	INT					NOT NULL
+Codigo_Palestra		  INT					    PRIMARY KEY,
+Titulo				      VARCHAR(MAX)		NOT NULL,
+Carga_Horaria		    INT					    NULL,
+Data1				        DATETIME			  NOT NULL,
+Codigo_Palestrante	INT					    NOT NULL,
 FOREIGN KEY (Codigo_Palestrante) REFERENCES Palestrante(Codigo_Palestrante)
 )
 
@@ -27,30 +27,30 @@ Sigla			VARCHAR(100)	NOT NULL
 )
 
 CREATE TABLE Aluno(
-Ra				CHAR(7)				NOT NULL	PRIMARY KEY,
-Nome			VARCHAR(250)		NOT NULL,
-Codigo_Curso	INT					NOT NULL,
+Ra				    CHAR(7)				  NOT NULL	PRIMARY KEY,
+Nome			    VARCHAR(250)		NOT NULL,
+Codigo_Curso	INT					    NOT NULL,
 FOREIGN KEY (Codigo_Curso) REFERENCES Curso(Codigo_Curso)
 )
 
 CREATE TABLE Alunos_Inscritos(
-Ra					CHAR(7)			NOT NULL,
-Codigo_Palestra		INT				NOT NULL	
+Ra					      CHAR(7)			NOT NULL,
+Codigo_Palestra		INT				  NOT NULL	
 FOREIGN KEY (Ra)				REFERENCES Aluno(Ra),
 FOREIGN KEY (Codigo_Palestra)	REFERENCES Palestra(Codigo_Palestra)
 )
 
 CREATE TABLE Nao_Alunos(
-RG				VARCHAR(9)		NOT NULL,
+RG				  VARCHAR(9)		NOT NULL,
 Orgao_Exp		CHAR(5)		NOT NULL,
-Nome			VARCHAR(250)	NOT NULL,
+Nome			  VARCHAR(250)	NOT NULL,
 PRIMARY KEY (RG, Orgao_Exp)
 )
 
 CREATE TABLE Nao_Alunos_Inscritos(
 Codigo_Palestra			INT				NOT NULL,
-RG						VARCHAR(9)		NOT NULL,
-Orgao_Exp				CHAR(5)			NOT NULL,
+RG						      VARCHAR(9)		NOT NULL,
+  Orgao_Exp				  CHAR(5)			NOT NULL,
 FOREIGN KEY(Codigo_Palestra) REFERENCES Palestra(Codigo_Palestra),
 FOREIGN KEY (RG) REFERENCES Nao_Alunos(RG),
 FOREIGN KEY (Orgao_Exp) REFERENCES Nao_Alunos(Orgao_Exp)
